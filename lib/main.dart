@@ -3,11 +3,23 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Center(
-    child: Text(
-      "Flutter course",
-      textDirection: TextDirection.ltr,
-      style: TextStyle(fontSize: 40.0),
-    ),
-  ));
+ runApp(
+   Row(textDirection: TextDirection.ltr, children: [
+     Text(
+       'One',
+       textDirection: TextDirection.ltr,
+       style: TextStyle(fontSize: 50),
+     ),
+     Text(
+       'Two',
+       textDirection: TextDirection.ltr,
+       style: TextStyle(fontSize: 50),
+     ),
+     Text(
+       'Three',
+       textDirection: TextDirection.ltr,
+       style: TextStyle(fontSize: 50),
+     )
+   ]),
+ );
 }

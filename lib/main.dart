@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(Container(
-    // padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
-    padding: EdgeInsets.all(50.0),
+    decoration: BoxDecoration(color: Colors.blueAccent),
     child: Column(children: [
       Text(
         'Partha',

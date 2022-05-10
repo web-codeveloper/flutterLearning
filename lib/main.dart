@@ -3,23 +3,15 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    Column(textDirection: TextDirection.ltr, children: [
+  runApp(Container(
+    // padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
+    padding: EdgeInsets.all(50.0),
+    child: Column(children: [
       Text(
-        'One',
+        'Partha',
         textDirection: TextDirection.ltr,
-        style: TextStyle(fontSize: 50),
-      ),
-      Text(
-        'Two',
-        textDirection: TextDirection.ltr,
-        style: TextStyle(fontSize: 50),
-      ),
-      Text(
-        'Three',
-        textDirection: TextDirection.ltr,
-        style: TextStyle(fontSize: 50),
+        style: TextStyle(fontSize: 60),
       )
     ]),
-  );
+  ));
 }

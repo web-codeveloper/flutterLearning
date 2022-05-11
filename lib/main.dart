@@ -14,13 +14,31 @@ void main() {
             ),
             backgroundColor: Colors.black87,
           ),
-          backgroundColor: Colors.cyan,
-          body: Stack(
+          body: ListView(
             children: [
-              Image(image: AssetImage('assets/images/my.jpg')),
-              Text(
-                'Partha Mandal',
-                style: TextStyle(fontSize: 30, color: Colors.redAccent),
+              ListTile(
+                leading: Image.asset('assets/images/my.jpg'),
+                title: const Text('Card title 1'),
+                subtitle: Text('Card subtitle 1'),
+                trailing: Icon(Icons.delete),
+              ),
+              ListTile(
+                leading: Image.asset('assets/images/1.jpg'),
+                title: const Text('Card title 2'),
+                subtitle: Text('Card subtitle 2'),
+                trailing: Icon(Icons.delete),
+              ),
+              ListTile(
+                leading: Image.asset('assets/images/2.jpg'),
+                title: const Text('Card title 3'),
+                subtitle: Text('Card subtitle 3'),
+                trailing: Icon(Icons.delete),
+              ),
+              ListTile(
+                leading: Image.asset('assets/images/3.jpg'),
+                title: const Text('Card title 4'),
+                subtitle: Text('Card subtitle 4'),
+                trailing: Icon(Icons.delete),
               )
             ],
           ))));

@@ -25,6 +25,11 @@ void main() {
                   Image.asset(
                     'assets/images/1.jpg',
                     height: 200,
+                  ),
+                  Divider(),
+                  Text(
+                    'Nature Image',
+                    style: TextStyle(fontSize: 30),
                   )
                 ]),
               ),

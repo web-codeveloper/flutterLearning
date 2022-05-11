@@ -15,5 +15,5 @@ void main() {
             backgroundColor: Colors.black87,
           ),
           backgroundColor: Colors.cyan,
-          body: Image(image: AssetImage('assets/images/my.jpg')))));
+          body: Image(image: NetworkImage('https://zbrdst.com/assets/image/food2.png'), fit: BoxFit.cover,))));
 }

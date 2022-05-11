@@ -15,8 +15,8 @@ void main() {
             backgroundColor: Colors.black87,
           ),
           backgroundColor: Colors.cyan,
-          body: GridView.extent(
-            maxCrossAxisExtent: 100,
+          body: GridView.count(
+            crossAxisCount: 2,
             mainAxisSpacing: 20,
             crossAxisSpacing: 100,
             children: [

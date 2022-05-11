@@ -15,16 +15,13 @@ void main() {
             backgroundColor: Colors.black87,
           ),
           backgroundColor: Colors.cyan,
-          body: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 100,
+          body: Stack(
             children: [
-              Image(image: AssetImage('assets/images/1.jpg')),
-              Image(image: AssetImage('assets/images/2.jpg')),
-              Image(image: AssetImage('assets/images/3.jpg')),
-              Image(image: AssetImage('assets/images/4.jpg')),
-              Image(image: AssetImage('assets/images/5.jpg')),
+              Image(image: AssetImage('assets/images/my.jpg')),
+              Text(
+                'Partha Mandal',
+                style: TextStyle(fontSize: 30, color: Colors.redAccent),
+              )
             ],
           ))));
 }

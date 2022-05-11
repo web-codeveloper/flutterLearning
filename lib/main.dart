@@ -6,16 +6,14 @@ void main() {
   runApp(MaterialApp(
       title: 'Flutter',
       home: Scaffold(
-        backgroundColor: Colors.cyan,
-        body: Center(
-          child: Text(
-            'Material App',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-                color: Colors.white,
-                decoration: TextDecoration.none,
-                fontSize: 50),
+          appBar: AppBar(
+            title: Text(
+              'Flutter App',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
+            ),
+            backgroundColor: Colors.black87,
           ),
-        ),
-      )));
+          backgroundColor: Colors.cyan,
+          body: Image(image: AssetImage('assets/images/my.jpg')))));
 }

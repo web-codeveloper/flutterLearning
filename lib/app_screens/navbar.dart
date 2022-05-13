@@ -2,91 +2,95 @@
 
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  static const String _title = 'Flutter App';
-
+class MyNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
+    return MaterialApp(
+      title: 'Flutter App',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: MyNavigationBar()
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
+class MyNavigationBar extends StatefulWidget {
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  _MyNavigationBarState createState() {
+    return _MyNavigationBarState();
+  }
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.bold,
-  );
-  static const List<Widget> _widgetOptions = <Widget>[
+class _MyNavigationBarState extends State<MyNavigationBar> {
+
+  final List<Widget> _items = [
     Text(
       'Home',
-      style: optionStyle,
     ),
     Text(
       'Search',
-      style: optionStyle,
     ),
     Text(
-      'Favorite',
-      style: optionStyle,
+      'Notifications',
+    ),
+    Text(
+      'Setting',
+    ),
+    Text(
+      'Profile',
     ),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My App'),
+        title: Text("My App"),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 30,
-            ),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              size: 30,
-            ),
-            label: 'Favorite',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 0, 76, 218),
-        onTap: _onItemTapped,
-      ),
+      body:
+          Center(child: IndexedStack(index: _selectedIndex, children: _items)),
+      bottomNavigationBar: _showBottomNav(),
+      backgroundColor: Colors.blueAccent,
     );
+  }
+
+  Widget _showBottomNav() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home, size: 24,),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search, size: 24,),
+          label: 'Search',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications, size: 24,),
+          label: 'Notifications',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings, size: 24,),
+          label: 'Setting',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle, size: 24,),
+          label: 'Profile',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.purple,
+      unselectedItemColor: Colors.grey,
+      onTap: _onTap,
+    );
+  }
+
+  void _onTap(int index) {
+    _selectedIndex = index;
+    setState(() {});
   }
 }

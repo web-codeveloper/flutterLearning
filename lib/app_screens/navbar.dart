@@ -6,12 +6,12 @@ class MyNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: MyNavigationBar()
-    );
+        title: 'Flutter App',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+        ),
+        home: MyNavigationBar(),
+        debugShowCheckedModeBanner: false);
   }
 }
 
@@ -23,7 +23,6 @@ class MyNavigationBar extends StatefulWidget {
 }
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
-
   final List<Widget> _items = [
     Text(
       'Home',
@@ -62,23 +61,38 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home, size: 24,),
+          icon: Icon(
+            Icons.home,
+            size: 24,
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search, size: 24,),
+          icon: Icon(
+            Icons.search,
+            size: 24,
+          ),
           label: 'Search',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.notifications, size: 24,),
+          icon: Icon(
+            Icons.notifications,
+            size: 24,
+          ),
           label: 'Notifications',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings, size: 24,),
+          icon: Icon(
+            Icons.settings,
+            size: 24,
+          ),
           label: 'Setting',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle, size: 24,),
+          icon: Icon(
+            Icons.account_circle,
+            size: 24,
+          ),
           label: 'Profile',
         ),
       ],

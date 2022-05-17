@@ -3,9 +3,9 @@
 import 'package:firstapp/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/app_screens/navbar.dart';
-import 'package:firstapp/services/post_service.dart';
+import 'package:firstapp/services/users/list_service.dart';
 
-// void main() => runApp(MyNav());
+// void main() => runApp(UsersList());
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -22,18 +22,18 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
   @override
   _MainPageState createState() => _MainPageState();
-  
 }
 
-class _MainPageState extends State<MainPage>{
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-    drawer: NavigationDrawerWidget(),
-    appBar: AppBar(
-      title: Text("My App"),
-    ),
-  );
+        drawer: NavigationDrawerWidget(),
+        appBar: AppBar(
+          title: Text("My App"),
+        ),
+      );
 }
-

@@ -1,6 +1,7 @@
 import 'package:firstapp/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import '../services/users/list_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
-  UsersList usersList = UsersList();
+  UsersService usersService = UsersService();
   @override
   Widget build(BuildContext context) => Scaffold(
         drawer: const NavigationDrawerWidget(),
@@ -29,22 +30,15 @@ class _UsersPageState extends State<UsersPage> {
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                      title: const Center(child: Text("Add User", style: TextStyle(color: Colors.amber))),
+                      title: const Center(
+                          child: Text("Add User",
+                              style: TextStyle(color: Colors.amber))),
                       content: Form(
                           child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextFormField(
                               decoration: const InputDecoration(
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber)
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber)
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber)
-                                ),
                                   filled: true,
                                   fillColor: Colors.white,
                                   labelText: "Name"),
@@ -88,7 +82,27 @@ class _UsersPageState extends State<UsersPage> {
                             height: 12.0,
                           ),
                           ElevatedButton(
-                              onPressed: () {}, child: const Text("Submit"))
+                              onPressed: () async {
+                                Map<String, dynamic> data = {
+                                  "name": name,
+                                  "emailId": emailId,
+                                  "mobileNo": mobileNo,
+                                  "address": address,
+                                };
+                                String res =
+                                    await usersService.createUser(data);
+                                res == "success"
+                                    ? Fluttertoast.showToast(
+                                        msg: "User successfully created !")
+                                    : res == "required"
+                                        ? Fluttertoast.showToast(
+                                            msg: "All fields are required !")
+                                        : Fluttertoast.showToast(
+                                            msg: "Something went wrong !");
+                                Navigator.of(context).pop();
+                                setState(() {});
+                              },
+                              child: const Text("Submit"))
                         ],
                       )),
                     ));
@@ -97,7 +111,7 @@ class _UsersPageState extends State<UsersPage> {
           backgroundColor: Colors.amber,
         ),
         body: FutureBuilder<List>(
-          future: usersList.getUsers(),
+          future: usersService.getUsers(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data?.length == 0) {
@@ -117,9 +131,23 @@ class _UsersPageState extends State<UsersPage> {
                         subtitle: Text(snapshot.data?[index]['emailId'] +
                             '\n' +
                             snapshot.data?[index]['mobileNo']),
-                        trailing: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
+                        trailing: IconButton(
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          onPressed: () async {
+                            Map<String, dynamic> data = {
+                              "id": snapshot.data?[index]['id']
+                            };
+                            var res = await usersService.deleteUser(data);
+                            res == "success"
+                                ? Fluttertoast.showToast(
+                                    msg: "User successfully deleted !")
+                                : Fluttertoast.showToast(
+                                    msg: "Something went wrong !");
+                            setState(() {});
+                          },
                         ),
                       );
                     });

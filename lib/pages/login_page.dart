@@ -11,12 +11,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 174, 247, 241),
+      backgroundColor: Color.fromARGB(255, 220, 255, 253),
       body: Center(
         child: SingleChildScrollView(
             child: Container(
-          height: 640,
-          width: 1080,
+          height: 560,
+          width: 1000,
           margin: const EdgeInsets.symmetric(horizontal: 24),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           decoration: BoxDecoration(
@@ -28,14 +28,19 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                   child: Center(
                 child: Padding(
-                    padding: const EdgeInsets.all(100.0),
+                    padding: (MediaQuery.of(context).size.width > 900)
+                        ? const EdgeInsets.all(100.0)
+                        : (MediaQuery.of(context).size.width < 901 &&
+                                MediaQuery.of(context).size.width > 500)
+                            ? const EdgeInsets.all(70.0)
+                            : const EdgeInsets.all(30.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text('Login',
                             style: TextStyle(
-                                fontSize: 35,
+                                fontSize: 30,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.blueAccent)),
                         const SizedBox(height: 28),
@@ -46,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                         const TextField(
                           decoration: InputDecoration(label: Text('Password')),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.topRight,
                           child: MaterialButton(
@@ -54,10 +59,11 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Text("Forgot password?"),
                           ),
                         ),
-                        const SizedBox(height: 35),
+                        const SizedBox(height: 30),
                         MaterialButton(
                           onPressed: () {},
-                          child: const Text("Login"),
+                          child: const Text("Login",
+                              style: TextStyle(fontSize: 18)),
                           minWidth: double.infinity,
                           height: 52,
                           elevation: 32,
@@ -66,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32)),
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 30),
                         TextButton(
                           style: TextButton.styleFrom(
                             textStyle: const TextStyle(fontSize: 16),

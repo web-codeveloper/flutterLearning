@@ -1,10 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields
-
-import 'package:firstapp/pages/login_page.dart';
-import 'package:firstapp/widget/navigation_drawer_widget.dart';
+import 'package:get/get.dart';
+import 'package:firstapp/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:firstapp/app_screens/navbar.dart';
-import 'package:firstapp/services/users/list_service.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,12 +38,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'Flutter App',
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
-        home: LoginPage(),
+        initialRoute: RoutesClass.getLoginRoute(),
+        getPages: RoutesClass.routes,
         debugShowCheckedModeBanner: false);
   }
 }

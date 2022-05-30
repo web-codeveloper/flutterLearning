@@ -1,17 +1,16 @@
-import 'package:firstapp/pages/signup_page.dart';
+import 'package:firstapp/pages/login_page.dart';
+import 'package:firstapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../routes/routes.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +28,17 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Row(
             children: [
+              if (MediaQuery.of(context).size.width > 900)
+                Expanded(
+                    child: Container(
+                  color: Colors.white,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/login.png'),
+                            fit: BoxFit.cover)),
+                  ),
+                )),
               Expanded(
                   child: Center(
                 child: Padding(
@@ -42,31 +52,27 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Login',
+                        const Text('Sign Up',
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.blueAccent)),
                         const SizedBox(height: 28),
                         const TextField(
+                          decoration: InputDecoration(label: Text('Name')),
+                        ),
+                        const SizedBox(height: 15),
+                        const TextField(
                           decoration: InputDecoration(label: Text('Email')),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 15),
                         const TextField(
                           decoration: InputDecoration(label: Text('Password')),
                         ),
-                        const SizedBox(height: 10),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: MaterialButton(
-                            onPressed: () {},
-                            child: const Text("Forgot password?"),
-                          ),
-                        ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 15),
                         MaterialButton(
                           onPressed: () {},
-                          child: const Text("Login",
+                          child: const Text("Sign Up",
                               style: TextStyle(fontSize: 18)),
                           minWidth: double.infinity,
                           height: 52,
@@ -76,31 +82,20 @@ class _LoginPageState extends State<LoginPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32)),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         TextButton(
                           style: TextButton.styleFrom(
                             textStyle: const TextStyle(fontSize: 16),
                             primary: Colors.grey,
                           ),
                           onPressed: () {
-                            Get.toNamed(RoutesClass.getSignupRoute());
+                            Get.toNamed(RoutesClass.getLoginRoute());
                           },
-                          child: const Text('New user? Sign up'),
+                          child: const Text('Old user? Login'),
                         ),
                       ],
                     )),
               )),
-              if (MediaQuery.of(context).size.width > 900)
-                Expanded(
-                    child: Container(
-                  color: Colors.white,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/login.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                ))
             ],
           ),
         )),

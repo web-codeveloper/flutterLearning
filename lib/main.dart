@@ -1,11 +1,28 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields
+import 'package:firstapp/widget/navigation_drawer_widget.dart';
 import 'package:get/get.dart';
 import 'package:firstapp/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await GetStorage.init();
+  // final storage = GetStorage();
+  // runApp(
+  //     (storage.read("isLogedin") != null && storage.read("isLogedin") == true && !storage.read("isLogedin"))
+  //         ? Dashboard()
+  //         : MyApp());
+  // if(storage.read("isLogedin")){
+  //   runApp(Dashboard());
+  // }else{
+  //   runApp(MyApp());
+  // }
+  runApp(MyApp());
+}
 
-// class MyApp extends StatelessWidget {
+// class Dashboard extends StatelessWidget {
+//   const Dashboard({Key? key}) : super(key: key);
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
@@ -36,6 +53,8 @@ void main() => runApp(MyApp());
 // }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

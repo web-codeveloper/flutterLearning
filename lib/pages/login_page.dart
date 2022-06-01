@@ -1,5 +1,7 @@
 import 'package:firstapp/pages/signup_page.dart';
+import 'package:firstapp/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../routes/routes.dart';
@@ -12,8 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  AuthService authService = AuthService();
   @override
   Widget build(BuildContext context) {
+    var emailId;
+    var password;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 220, 255, 253),
       body: Center(
@@ -48,13 +53,19 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.w900,
                                 color: Colors.blueAccent)),
                         const SizedBox(height: 28),
-                        const TextField(
-                          decoration: InputDecoration(label: Text('Email')),
-                        ),
+                        TextField(
+                            decoration:
+                                const InputDecoration(label: Text('Email Id')),
+                            onChanged: (_val) {
+                              emailId = _val;
+                            }),
                         const SizedBox(height: 24),
-                        const TextField(
-                          decoration: InputDecoration(label: Text('Password')),
-                        ),
+                        TextField(
+                            decoration:
+                                const InputDecoration(label: Text('Password')),
+                            onChanged: (_val) {
+                              password = _val;
+                            }),
                         const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.topRight,
@@ -65,7 +76,18 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 30),
                         MaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            Map<String, dynamic> data = {
+                              "emailId": emailId,
+                              "password": password,
+                            };
+                            String res = await authService.login(data);
+
+                            res == "success"
+                                ? Get.toNamed(RoutesClass.getLoginRoute())
+                                : Fluttertoast.showToast(msg: res);
+                            setState(() {});
+                          },
                           child: const Text("Login",
                               style: TextStyle(fontSize: 18)),
                           minWidth: double.infinity,

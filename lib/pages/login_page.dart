@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                             String res = await authService.login(data);
 
                             res == "success"
-                                ? Get.toNamed(RoutesClass.getLoginRoute())
+                                ? Get.toNamed(RoutesClass.getDashboardRoute())
                                 : Fluttertoast.showToast(msg: res);
                             setState(() {});
                           },

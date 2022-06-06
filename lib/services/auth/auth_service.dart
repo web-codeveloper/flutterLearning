@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +16,7 @@ class AuthService {
         return "error";
       }
     } catch (SocketException) {
-      return "Error While Fetching Data !";
+      return "Server error !";
     }
   }
 
